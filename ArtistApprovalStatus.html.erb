@@ -1,0 +1,28 @@
+<h1><%= tr("Artist Approval Status") %></h1>
+<br />
+<table border="0" cellpadding="4" cellspacing="0" class="list">
+	<tr>
+		<th><%= tr("Title") %></th>
+		<th></th>
+	</tr>
+	<% @artist_approval_statuses.each do |artist_approval_status| %>
+	<tr class="<%= cycle("rowB", "rowA") %>">
+		<td>
+			<h3 class="attention" style="float:left; margin-right:6px"><%= artist_approval_status.title %></h3>
+		</td>
+		<td>
+		<div>
+			<% if artist_approval_status.title != "Approved" && artist_approval_status.title != "Rejected" %>
+				<%= link_to image_tag("edit_pencil2.gif"), edit_artist_approval_status_path(artist_approval_status) %>
+				<%= link_to image_tag("delete4.gif"), artist_approval_status, :confirm => strip_tags(tr("Are you sure?")), :method => :delete %>
+				<br />
+			<% end %>
+		</div>
+		</td>
+	</tr>
+	<% end %>
+</table>
+<br />
+
+<%= link_to image_tag("add2.gif", :class => :icon), new_artist_approval_status_path -%>
+<strong><%= link_to tr("New Artist Approval Status"), new_artist_approval_status_path %></strong>
